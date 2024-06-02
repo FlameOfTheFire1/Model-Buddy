@@ -25,29 +25,35 @@ initializeLocalStorage();
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.action === "toggleExtensionState"){
+        console.log("hey");
         isExtensionEnabled = !isExtensionEnabled;
         chrome.storage.local.set({extensionState: isExtensionEnabled}, () => {
-            sendResponse({response: "successfully toggled extenstion state."});
+            sendResponse({response: "successfully toggled extenstion state.", status: "success"});
         });
         return true;
     }
     else if (message.action === "toggleCleanUp"){
+        console.log("Hi");
         isCleanUpEnabled = !isCleanUpEnabled;
         chrome.storage.local.set({cleanUpState: isCleanUpEnabled}, () => {
-            sendResponse({response: "succsessfully toggled clean up state."});
+            sendResponse({response: "successfully toggled clean up state.", status: "success"});
         });
         return true;
     }
     else if (message.action == "loadButtonStates"){
+        console.log("konnichiwa");
         initializeLocalStorage();
         chrome.storage.local.get(['ExtensionState', 'cleanUpState'], (result) => {
+            //console.log(result.cleanUpState);
             sendResponse({ 
                 extensionState: result.extensionState, 
-                cleanUpState: result.cleanUpState 
+                cleanUpState: result.cleanUpState,
+                status: "success"
               });
         });
         return true;
     }  
+    console.log("visited");
 });
 
 chrome.downloads.onChanged.addListener((delta) => {

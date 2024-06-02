@@ -26,6 +26,7 @@ p{
     padding: 8px;
     padding-top: 0;
     padding-bottom: 0;
+    font-size: 1.05em;
 }
 
 button{
@@ -42,6 +43,6 @@ button:hover{
 body{
     width: 300px;
     height: auto;
-    background-color: #edf2f4;
+    background-color: #dee2e6;
     margin: 0;
 }
