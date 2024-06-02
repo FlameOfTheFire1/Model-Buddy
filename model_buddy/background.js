@@ -2,39 +2,53 @@ let isExtensionEnabled = true;
 let isCleanUpEnabled = false;
 
 //chrome.runtime.onInstalled.addListener(() => {
-//    chrome.storage.local.set({extensionState: isExtensionEnabled});
-//    chrome.storage.local.set({cleanUpState: isCleanUpEnabled});
 //});
 
 //function ensures needed values are in local storage
 function initializeLocalStorage(){
-    if (!(chrome.storage.local.get(["extensionState"]))){
-        chrome.storage.local.set({extensionState: isExtensionEnabled});
-    }
-    
-    if (!(chrome.storage.local.get(["cleanUpState"]))){
-        chrome.storage.local.set({cleanUpState: isCleanUpEnabled});
-    }
+    chrome.storage.local.get(['extensionState', 'cleanUpState'], function (result) {
+        if(!result.extensionState)
+        {
+            chrome.storage.local.set({extensionState: isExtensionEnabled}, () => {
+                console.log("extension state initialized");
+            });
+        }
+        if(!result.cleanUpState)
+        {
+            chrome.storage.local.set({cleanUpState: isCleanUpEnabled}, () => {
+                console.log("clean up state initialized");
+            });
+        }
+    });
 }
 initializeLocalStorage();
 
-chrome.runtime.onMessage.addListener((message, sendResponse) => {
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.action === "toggleExtensionState"){
         isExtensionEnabled = !isExtensionEnabled;
-        chrome.storage.local.set({extensionState: isExtensionEnabled});
-        sendResponse({response: "successfully toggled extenstion state."});
+        chrome.storage.local.set({extensionState: isExtensionEnabled}, () => {
+            sendResponse({response: "successfully toggled extenstion state."});
+        });
+        return true;
     }
     else if (message.action === "toggleCleanUp"){
         isCleanUpEnabled = !isCleanUpEnabled;
-        chrome.storage.local.set({cleanUpState: isCleanUpEnabled});
-        sendResponse({response: "succsessfully toggled clean up state."});
+        chrome.storage.local.set({cleanUpState: isCleanUpEnabled}, () => {
+            sendResponse({response: "succsessfully toggled clean up state."});
+        });
+        return true;
     }
     else if (message.action == "loadButtonStates"){
         initializeLocalStorage();
-        sendResponse({extensionState: chrome.storage.local.get(["extensionState"]), cleanUpState: chrome.storage.local.get(["cleanUpState"])});
+        chrome.storage.local.get(['ExtensionState', 'cleanUpState'], (result) => {
+            sendResponse({ 
+                extensionState: result.extensionState, 
+                cleanUpState: result.cleanUpState 
+              });
+        });
+        return true;
     }  
 });
-
 
 chrome.downloads.onChanged.addListener((delta) => {
     if (delta.state && delta.state.current == 'complete') { //downloaded file is completed

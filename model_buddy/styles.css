@@ -1,0 +1,27 @@
+.flex-rows .row1, .flex-rows .row2{
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex-rows{
+    margin: 10px; 
+    background-color: white;  
+}
+
+h1{
+    text-align: center;
+}
+
+h4{
+    text-align: center;
+}
+
+button{
+    background-color: grey;
+}
+
+body{
+    width: 300px;
+    height: 150px;
+    background-color: #edf2f4;
+}

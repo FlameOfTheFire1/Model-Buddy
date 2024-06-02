@@ -8,7 +8,6 @@
         "service_worker" : "background.js"
     },
     "action": {
-        "default_popup": "controls.html",
-        "default_icon": "hello_extensions.png"
+        "default_popup": "controls.html"
       }
   }
