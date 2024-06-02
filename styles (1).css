@@ -1,0 +1,4 @@
+.flex-rows .row1, .flex-rows .row2{
+    display: flex;
+    justify-content: space-between;
+}
