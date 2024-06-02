@@ -1,11 +1,17 @@
-.flex-rows .row1, .flex-rows .row2{
+.row1, .row2{
     display: flex;
     justify-content: space-between;
+    background-color: white;  
 }
 
-.flex-rows{
-    margin: 10px; 
-    background-color: white;  
+.row1{
+    margin: 16px;
+    margin-top: 0;
+}
+
+.row2{
+    margin: 16px;
+    margin-top: 0;
 }
 
 h1{
@@ -16,12 +22,26 @@ h4{
     text-align: center;
 }
 
+p{
+    padding: 8px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
 button{
-    background-color: grey;
+    background-color: #979dac;
+    margin: 12px;
+    margin-left: 0px;
+    margin-right: 8px;
+}
+
+button:hover{
+    background-color: lightgrey;
 }
 
 body{
     width: 300px;
-    height: 150px;
+    height: auto;
     background-color: #edf2f4;
+    margin: 0;
 }
