@@ -14,6 +14,7 @@ activationButton.addEventListener("click", function() {
     chrome.runtime.sendMessage({action: "toggleExtensionState"}, (response) => {
         if (response.status == "success"){
             console.log("extension state change success");
+            console.log(response.extensionState);
             activationButton.textContent = response.extensionState ? "Disable" : "Enable";
         }
     })
@@ -24,6 +25,7 @@ cleanUpButton.addEventListener("click", function() {
     chrome.runtime.sendMessage({action: "toggleCleanUp"}, (response) => {
         if (response.status == "success"){
             console.log("clean up state change success");
+            console.log(response.cleanUpState);
             cleanUpButton.textContent = response.cleanUpState ? "Don't Clean Up Sent Files" : "Clean Up Sent Files";
         }
     })
