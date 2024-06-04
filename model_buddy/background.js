@@ -60,8 +60,8 @@ function initializeLocalStorage(){
 initializeLocalStorage();
 
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.action === "toggleExtensionState"){
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.action === "toggleExtensionState"){
         console.log("hey");
         isExtensionEnabled = !isExtensionEnabled;
         setExtensionState(isExtensionEnabled, () => {
@@ -75,7 +75,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         });
         return true;
     }
-    else if (message.action === "toggleCleanUp"){
+    else if (request.action === "toggleCleanUp"){
         console.log("Hi");
         isCleanUpEnabled = !isCleanUpEnabled;
         setCleanUpState(isCleanUpEnabled, () => {
@@ -89,7 +89,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         });
         return true;
     }
-    else if (message.action == "loadButtonStates"){
+    else if (request.action == "loadButtonStates"){
         console.log("konnichiwa");
         initializeLocalStorage();
         getCleanUpState((state) => {

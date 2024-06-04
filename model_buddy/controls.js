@@ -30,3 +30,14 @@ cleanUpButton.addEventListener("click", function() {
         }
     })
 });
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.action === "showPopup") {
+      document.getElementById("popup").style.display = "block";
+      document.getElementById("controls").style.display = "none";
+    }
+    else if(request.action == "showControls"){
+      document.getElementById("popup").style.display = "none";
+      document.getElementById("controls").style.display = "block";
+    }
+  });
