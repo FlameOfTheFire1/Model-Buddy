@@ -4,7 +4,7 @@ cleanUpButton = document.getElementById("cleanUp");
 chrome.runtime.sendMessage({action: "loadButtonStates"}, (response) => {
     if(response.status == "success"){
         activationButton.textContent = response.extensionState ? "Enable" : "Disable";
-        cleanUpButton.textContent = response.cleanUpState ? "Clean Up Send Files" : "Don't Clean Up Sent Files";
+        cleanUpButton.textContent = response.cleanUpState ? "Don't Clean Up Send Files" : "Clean Up Sent Files";
         console.log("updating button states in action script");
     }
 });
