@@ -33,11 +33,19 @@ cleanUpButton.addEventListener("click", function() {
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === "showPopup") {
-      document.getElementById("popup").style.display = "block";
-      document.getElementById("controls").style.display = "none";
-    }
-    else if(request.action == "showControls"){
-      document.getElementById("popup").style.display = "none";
-      document.getElementById("controls").style.display = "block";
+        //var popup = document.getElementById("popup");
+        //var controls = document.getElementById("controls");
+
+        setTimeout(function() {
+            controls.classList.add('hidden');
+            popup.classList.add('visible');
+            popup.classList.add('fade-out');
+
+            setTimeout(function() {
+                popup.classList.add('hidden');
+                controls.classList.add('visible');
+            }, 1000);
+        }, 5000);
+      
     }
   });

@@ -1,7 +1,5 @@
 let isExtensionEnabled = true;
 let isCleanUpEnabled = false;
-//Am I too dependent on these vars up here?, I keep updating them even after I pull vals
-//from local storage
 
 //chrome.runtime.onInstalled.addListener(() => { });
 
@@ -130,15 +128,16 @@ chrome.downloads.onChanged.addListener((delta) => {
                     {
                         //prompt user for permission to send file to Model Scout app
                         //'3d printing model detected, send to Model Scout?'
+                        chrome.runtime.sendMessage({action: "showPopup"});
                     }
 
                     //zip file case
                     if (itemExtension == '.zip')
                     {
                         //prompt user 'zip file may contain 3d model, send to Model Scout?'
+                        chrome.runtime.sendMessage({action: "showPopup"});
                     }
                 }
-                
                 });
             }
     });

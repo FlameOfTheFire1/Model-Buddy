@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Model Scout Extension",
+    "name": "Model Buddy",
     "description": "Capture and redirect 3D model downloads for Model Scout Application",
     "version": "1.0",
     "permissions" : ["downloads", "storage"],

@@ -51,3 +51,20 @@ body{
     display: flex;
     justify-content: center;
 }
+
+#popup{
+    transition: opacity 1s ease-out;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 1s ease-out, display 1s ease-out 1s; /* Adding a delay to display */
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
